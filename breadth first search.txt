@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <conio.h>
+
+void main() {
+    int n, i, j, start;
+    int adj[10][10], visited[10], queue[10], front = 0, rear = 0;
+
+    clrscr(); // Turbo C specific: Clears the output screen
+
+    printf("Enter number of vertices: ");
+    scanf("%d", &n);
+
+    // Initializing visited array to 0
+    for(i = 0; i < n; i++) {
+        visited[i] = 0;
+    }
+
+    printf("Enter adjacency matrix (%d x %d):\n", n, n);
+    for(i = 0; i < n; i++) {
+        for(j = 0; j < n; j++) {
+            scanf("%d", &adj[i][j]);
+        }
+    }
+
+    printf("Enter the starting vertex (0 to %d): ", n - 1);
+    scanf("%d", &start);
+
+    // BFS logic using Queue
+    visited[start] = 1;      // Mark start node as visited
+    queue[rear++] = start;   // Enqueue starting node
+
+    printf("\nBFS Traversal starting from vertex %d: ", start);
+
+    while(front < rear) {    // While queue is not empty
+        int current = queue[front++]; // Dequeue
+        printf("%d ", current);
+
+        for(i = 0; i < n; i++) {
+            // If neighbor exists and is not visited
+            if(adj[current][i] == 1 && visited[i] == 0) {
+                visited[i] = 1;        // Mark as visited
+                queue[rear++] = i;     // Enqueue neighbor
+            }
+        }
+    }
+
+    getch(); // Turbo C specific: Keeps the output window open
+}
