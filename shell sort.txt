@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <conio.h>
+
+void main() {
+    int arr[100];
+    int n, gap, i, j, temp;
+
+    clrscr(); /* Clears Turbo C screen */
+
+    /* 1. Get array size from user */
+    printf("Enter how many numbers (max 100): ");
+    scanf("%d", &n);
+
+    /* 2. Get array elements from user */
+    printf("Enter %d numbers:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    /* 3. Simple Shell Sort Logic */
+    for (gap = n / 2; gap > 0; gap = gap / 2) {
+        for (i = gap; i < n; i++) {
+            temp = arr[i];
+            
+            /* Shift elements back by gap size if they are larger */
+            for (j = i; j >= gap && arr[j - gap] > temp; j = j - gap) {
+                arr[j] = arr[j - gap];
+            }
+            arr[j] = temp;
+        }
+    }
+
+    /* 4. Print the final sorted numbers */
+    printf("\nSorted numbers:\n");
+    for (i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    getch(); /* Holds Turbo C screen */
+}
