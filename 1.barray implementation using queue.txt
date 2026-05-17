@@ -1,0 +1,47 @@
+//array implementation using queue
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+
+int q[100],f=-1,r=-1,ch,x,i;
+
+void main()
+{
+clrscr();
+while(1)
+{
+printf("\n1.Insert \n2.Delete \n3.Display \n4.Exit\n");
+scanf("\n%d",&ch);
+
+switch(ch)
+{
+case 1:
+if(r==99)
+printf("Full");
+else
+{
+printf("Enter:");
+scanf("%d",&x);
+if(f==-1)
+f=0;
+q[++r]=x;
+}
+break;
+
+case 2:
+if(f==-1 || f>r)
+printf("Empty");
+else
+printf("Deleted=%d",q[f++]);
+break;
+
+case 3:
+for(i=f;i<=r;i++)
+printf("%d ",q[i]);
+break;
+
+case 4:
+exit(0);
+}
+}
+}
