@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int b[20], n, i, pos, e;
+
+void display() {
+    printf("\nElements: ");
+    for(i=0; i<n; i++) printf("%d ", b[i]);
+}
+
+void main() {
+    int ch;
+    char g;
+    do {
+        printf("\n1.Create 2.Del 3.Srch 4.Ins 5.Disp 6.Exit\nChoice: ");
+        scanf("%d", &ch);
+        if(ch==1) {
+            printf("Size: "); scanf("%d", &n);
+            for(i=0; i<n; i++) scanf("%d", &b[i]);
+        } else if(ch==2) {
+            printf("Pos: "); scanf("%d", &pos);
+            for(i=pos; i<n-1; i++) b[i]=b[i+1];
+            n--;
+        } else if(ch==3) {
+            printf("Element: "); scanf("%d", &e);
+            for(i=0; i<n; i++) if(b[i]==e) printf("Found at %d", i);
+        } else if(ch==4) {
+            printf("Pos & Val: "); scanf("%d%d", &pos, &e);
+            for(i=n; i>pos; i--) b[i]=b[i-1];
+            b[pos]=e; n++;
+        } else if(ch==5) display();
+        
+        if(ch==6) exit(0);
+        printf("\nContinue? (y/n): ");
+        scanf(" %c", &g);
+    } while(g=='y' || g=='Y');
+}
